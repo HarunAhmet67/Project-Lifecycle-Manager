@@ -13,3 +13,13 @@ class SizeTokens:
     m = 20
     l = 30
     xl = 40
+
+class ColorTokens:
+    "Color tokens"
+    silver = "#bdc3c7"
+    blue = "#3498db"
+    cyan = "#2980b9"
+    emerald = "#2ecc71"
+    green = "#27ae60"
+    red = "#e74c3c"
+    crimson = "#c0392b"
