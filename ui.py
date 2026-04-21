@@ -1,6 +1,7 @@
 import tkinter as tk
 from ui_tokens import SizeTokens as sz, SpacingTokens as sp, ColorTokens as c
-from services import LoginPhase, RegisterPhase, HubScreen_Open, cbx_changeboolconfig, Check_userAccount
+from services import LoginPhase, RegisterPhase, HubScreen_Open, cbx_changeboolconfig, Check_userAccount, al_SaveAcount, al_SaveLastAccountUsed
+from services import sv_RegisterAccount
 
 
 class LoginScreen(tk.Tk):
@@ -38,7 +39,11 @@ class LoginScreen(tk.Tk):
         self.btn_create_acc.pack(pady=sp.xs)
 
     def login_Account(self):
-        if(Check_userAccount(self.ent_username.get(), self.ent_password.get())) == True:
+        username = self.ent_username.get()
+        password = self.ent_password.get()
+        if(Check_userAccount(username, password)):
+            al_SaveAcount(username, password)
+            al_SaveLastAccountUsed(username)
             HubScreen_Open()
             self.destroy()
     
@@ -68,9 +73,9 @@ class RegisterScreen(tk.Tk):
         self.lbl_email = tk.Label(self, text="E-mail")
         self.ent_email = tk.Entry(self, width=sz.l)
         self.lbl_password = tk.Label(self, text="Password")
-        self.ent_password = tk.Entry(self, width=sz.l)
+        self.ent_password = tk.Entry(self, width=sz.l, show="*")
         self.lbl_confpassword = tk.Label(self, text="Confirm Password")
-        self.ent_confpassword = tk.Entry(self, width=sz.l)
+        self.ent_confpassword = tk.Entry(self, width=sz.l, show="*")
         self.btn_register = tk.Button(self, text="Register", command=lambda: self.register_Account(), background=self.btn_color)
 
     def setup_Layout(self):
@@ -86,9 +91,9 @@ class RegisterScreen(tk.Tk):
         self.btn_register.pack(pady=sp.l)
 
     def register_Account(self):
-        print("Register succesful!")
-        self.destroy()
-        LoginPhase()
+        if sv_RegisterAccount(self.ent_username.get(), self.ent_email.get(), self.ent_password.get(), self.ent_confpassword.get()):
+            self.destroy()
+            LoginPhase()
 
 class HubScreen(tk.Tk):
     def __init__(self):
