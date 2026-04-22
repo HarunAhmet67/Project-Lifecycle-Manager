@@ -1,8 +1,13 @@
 [
     {
         "username": "none-This exist because of search function.",
-        "last_id": 8,
-        "last_username": "naber7",
-        "last_password": "123qwe"
+        "last_id": 1,
+        "last_username": "user",
+        "last_password": "123qweasd"
+    },
+    {
+        "id": 1,
+        "username": "user",
+        "password": "123qweasd"
     }
 ]

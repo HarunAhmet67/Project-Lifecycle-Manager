@@ -83,6 +83,7 @@ def RegisterCheck(username, email, password, confirm_password):
         print("Passwords do not match!")
         return False
     return True
+
 #The main menu
 def HubScreen_Open():
      "Opens the main menu of app"
@@ -186,7 +187,7 @@ def al_SaveLastAccountUsed(username):
 
 def al_UpdateAccountDetails(username, password):
     data = al_loadData()
-    user = al_GetAccountDetails(username, data)
+    user = al_GetAccountDetails(username)
     name = user["username"]
     pw = user["password"]
     index = user["id"]

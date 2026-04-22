@@ -1,3 +1,20 @@
-accounts are on 
+accounts are on db table:
 
 useraccounts
+
+columns:
+id, username, email, password
+
+servers are on:
+
+servers
+
+columns:
+server_id, server_name, server_owner
+
+server members are on:
+
+servermembers (not yet implemented)
+
+columns(not yet implemented):
+server_id, server_name, username, user_id, user_rank

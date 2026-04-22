@@ -54,3 +54,34 @@ class REPOuseraccounts:
             return True
         else:
             return False
+
+class REPOservers:
+    "Allows reaching the servers, their owners and owner id's."
+    def sv_createServer(servername, owner):
+        "Creates server"
+        conn = sq.connect(db)
+        cursor = conn.cursor()
+
+        cursor.execute("INSERT INTO servers (server_name, server_owner) VALUES (?, ?)", [servername, owner])
+        conn.commit()
+        conn.close()
+
+    def sv_deleteServer():
+        "Deletes server"
+    
+    def sv_getServer():
+        "Get server data"
+    
+class REPOserver_members:
+    "Allows reaching the database of members, and their ranks in all servers"
+    def svm_addMember():
+        "Adds member to a server"
+
+    def svm_removeMember():
+        "Removes a member from server"
+
+    def svm_setRank():
+        "Sets the rank of member in a server."
+    
+    def svm_rankCheck():
+        "Checks the rank of user, mainly used for controlling the permits."

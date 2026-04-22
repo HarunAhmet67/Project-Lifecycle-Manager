@@ -16,6 +16,7 @@ class SizeTokens:
 
 class ColorTokens:
     "Color tokens"
+    darkgrey = "#3D3939"
     silver = "#bdc3c7"
     blue = "#3498db"
     cyan = "#2980b9"

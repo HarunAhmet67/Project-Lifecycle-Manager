@@ -109,9 +109,59 @@ class HubScreen(tk.Tk):
         self.setup_layout()
 
     def create_widgets(self):
-        self.btn_joinworkplace = tk.Button(self, text="Join Workplace", width=sz.m, height=3, background=self.btn_color)
-        self.btn_createworkplace = tk.Button(self, text="Create Workplace", width=sz.m, height=3, background=self.btn_color)
+        self.btn_joinworkplace = tk.Button(self, text="Join Workplace", command = lambda: self.join_workplace(), width=sz.m, height=3, background=self.btn_color)
+        self.btn_createworkplace = tk.Button(self, text="Create Workplace", command=lambda: self.create_workplace(), width=sz.m, height=3, background=self.btn_color)
 
     def setup_layout(self):
         self.btn_joinworkplace.grid(column=0, row=0, pady=sp.m, padx=sp.m)
         self.btn_createworkplace.grid(column=0, row=1, padx=sp.m, pady=sp.m)
+
+    def create_workplace(self):
+        create = CreateWorkplace(self)
+    def join_workplace(self):
+        wp = WorkplaceScreen(self)
+
+class CreateWorkplace(tk.Toplevel):
+    def __init__(self, root):
+        super().__init__(root)
+        self.title("Create workplace")
+        self.root = root
+        self.bg_color = c.silver
+        self.config(background=self.bg_color)
+        self.geometry("220x170")
+        self.resizable(False, False)
+
+        self.create_widgets()
+        self.setup_layout()
+
+    def create_widgets(self):
+        self.lbl_servername = tk.Label(self, text="Server name:", background=self.bg_color)
+        self.ent_servername = tk.Entry(self, width=sz.l)
+        self.btn_createserver = tk.Button(self, text="Create", width=sz.m)
+        self.btn_cancel = tk.Button(self, text="Cancel", width=sz.m, command=lambda: self.destroy())
+
+    def setup_layout(self):
+        self.lbl_servername.pack(pady=sp.m)
+        self.ent_servername.pack(pady=sp.xs)
+        self.btn_createserver.pack(pady=sp.l)
+        self.btn_cancel.pack(pady=sp.xs)
+
+class WorkplaceScreen(tk.Toplevel):
+    def __init__(self, root):
+        super().__init__(root)
+        self.title("project screen")
+        self.bg_color = c.silver
+        self.bbar_color = c.darkgrey
+        self.config(background=self.bg_color)
+        self.geometry("700x800")
+        self.minsize(width=300, height=300)
+
+        self.create_widgets()
+        self.setup_layout()
+    
+    def create_widgets(self):
+        self.frm_buttonbar = tk.Frame(self, width=200, height=800, background=self.bbar_color)
+        self.frm_buttonbar.grid_propagate(False)
+
+    def setup_layout(self):
+        self.frm_buttonbar.grid(column=0, row=0)
